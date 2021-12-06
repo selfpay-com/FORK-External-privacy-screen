@@ -44,8 +44,12 @@ public class PrivacyScreenPlugin: CAPPlugin {
         self.privacyViewController!.view.backgroundColor = .clear;
         self.privacyViewController!.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         if !UIAccessibility.isReduceTransparencyEnabled {
-            let blurEffect = UIBlurEffect(style: .regular)
+            var blurEffect = UIBlurEffect(style: .regular)
+            if #available(iOS 13.0, *) {
+                blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+            }
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.alpha = 0.98
             blurEffectView.frame = self.privacyViewController!.view.bounds
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             self.privacyViewController!.view.addSubview(blurEffectView)
