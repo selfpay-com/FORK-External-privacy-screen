@@ -16,8 +16,6 @@ public class PrivacyScreenPlugin: CAPPlugin {
         NotificationCenter.default.addObserver(self, selector: #selector(self.onAppDidBecomeActive),
                                                name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.onAppWillResignActive),
-                                               name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didDetectRecording),
                                                name: UIScreen.capturedDidChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.didDetectScreenshot),
                                                name: UIApplication.userDidTakeScreenshotNotification, object: nil)
@@ -46,7 +44,7 @@ public class PrivacyScreenPlugin: CAPPlugin {
         self.privacyViewController!.view.backgroundColor = .clear;
         self.privacyViewController!.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         if !UIAccessibility.isReduceTransparencyEnabled {
-            let blurEffect = UIBlurEffect(style: .dark)
+            let blurEffect = UIBlurEffect(style: .regular)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
             blurEffectView.frame = self.privacyViewController!.view.bounds
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -64,23 +62,6 @@ public class PrivacyScreenPlugin: CAPPlugin {
         DispatchQueue.main.async {
             self.privacyViewController?.dismiss(animated: false, completion: nil)
         }
-    }
-
-    @objc private func didDetectRecording() {
-        guard self.isEnabled else {
-            return
-        }
-
-        if #available(iOS 11.0, *) {
-            if UIScreen.main.isCaptured {
-                DispatchQueue.main.async {
-                    self.bridge?.viewController?.present(self.privacyViewController!, animated: false, completion: nil)
-                }
-            } else {
-                self.privacyViewController?.dismiss(animated: false, completion: nil)
-            }
-        }
-
     }
 
     @objc private func didDetectScreenshot() {
