@@ -1,0 +1,69 @@
+{
+  "api": {
+    "name": "PrivacyScreenPlugin",
+    "slug": "privacyscreenplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "enable",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [
+          {
+            "name": "since",
+            "text": "1.1.0"
+          }
+        ],
+        "docs": "Enables the privacy screen protection.\r\n\r\nOnly available for Android and iOS.",
+        "complexTypes": [],
+        "slug": "enable"
+      },
+      {
+        "name": "disable",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [
+          {
+            "name": "since",
+            "text": "1.1.0"
+          }
+        ],
+        "docs": "Disables the privacy screen protection.\r\n\r\nOnly available for Android and iOS.",
+        "complexTypes": [],
+        "slug": "disable"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": [
+    {
+      "name": "PrivacyScreen",
+      "slug": "privacyscreen",
+      "properties": [
+        {
+          "name": "enable",
+          "tags": [
+            {
+              "text": "true",
+              "name": "default"
+            },
+            {
+              "text": "true",
+              "name": "example"
+            }
+          ],
+          "docs": "Configure whether the plugin should be enabled from startup.\r\n\r\nOnly available for Android and iOS.",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        }
+      ],
+      "docs": "These configuration values are available:"
+    }
+  ]
+}
