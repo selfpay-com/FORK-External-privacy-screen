@@ -17,8 +17,8 @@ public class PrivacyScreenPlugin: CAPPlugin {
                                                name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.onAppWillResignActive),
                                                name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didDetectScreenshot),
-                                               name: UIApplication.userDidTakeScreenshotNotification, object: nil)
+//         NotificationCenter.default.addObserver(self, selector: #selector(self.didDetectScreenshot),
+//                                                name: UIApplication.userDidTakeScreenshotNotification, object: nil)
     }
 
     deinit {
@@ -68,19 +68,19 @@ public class PrivacyScreenPlugin: CAPPlugin {
         }
     }
 
-    @objc private func didDetectScreenshot() {
-        guard self.isEnabled else {
-            return
-        }
+//     @objc private func didDetectScreenshot() {
+//         guard self.isEnabled else {
+//             return
+//         }
 
-        self.alert = UIAlertController(title: "Attention",
-                                              message: "Screenshots may contain sensitive data. Do not keep them on your phone!",
-                                              preferredStyle: .alert)
-        self.alert?.addAction(UIAlertAction(title: "OK", style: .default))
-        DispatchQueue.main.async {
-            self.bridge?.viewController?.present(self.alert!, animated: false, completion: nil)
-        }
-    }
+//         self.alert = UIAlertController(title: "Attention",
+//                                               message: "Screenshots may contain sensitive data. Do not keep them on your phone!",
+//                                               preferredStyle: .alert)
+//         self.alert?.addAction(UIAlertAction(title: "OK", style: .default))
+//         DispatchQueue.main.async {
+//             self.bridge?.viewController?.present(self.alert!, animated: false, completion: nil)
+//         }
+//     }
 
     private func privacyScreenConfig() -> PrivacyScreenConfig {
         var config = PrivacyScreenConfig()
